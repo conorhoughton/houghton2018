@@ -1,0 +1,159 @@
+% GNUPLOT: LaTeX picture with Postscript
+\begingroup
+  \makeatletter
+  \providecommand\color[2][]{%
+    \GenericError{(gnuplot) \space\space\space\@spaces}{%
+      Package color not loaded in conjunction with
+      terminal option `colourtext'%
+    }{See the gnuplot documentation for explanation.%
+    }{Either use 'blacktext' in gnuplot or load the package
+      color.sty in LaTeX.}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\includegraphics[2][]{%
+    \GenericError{(gnuplot) \space\space\space\@spaces}{%
+      Package graphicx or graphics not loaded%
+    }{See the gnuplot documentation for explanation.%
+    }{The gnuplot epslatex terminal needs graphicx.sty or graphics.sty.}%
+    \renewcommand\includegraphics[2][]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \@ifundefined{ifGPcolor}{%
+    \newif\ifGPcolor
+    \GPcolorfalse
+  }{}%
+  \@ifundefined{ifGPblacktext}{%
+    \newif\ifGPblacktext
+    \GPblacktexttrue
+  }{}%
+  % define a \g@addto@macro without @ in the name:
+  \let\gplgaddtomacro\g@addto@macro
+  % define empty templates for all commands taking text:
+  \gdef\gplbacktext{}%
+  \gdef\gplfronttext{}%
+  \makeatother
+  \ifGPblacktext
+    % no textcolor at all
+    \def\colorrgb#1{}%
+    \def\colorgray#1{}%
+  \else
+    % gray or color?
+    \ifGPcolor
+      \def\colorrgb#1{\color[rgb]{#1}}%
+      \def\colorgray#1{\color[gray]{#1}}%
+      \expandafter\def\csname LTw\endcsname{\color{white}}%
+      \expandafter\def\csname LTb\endcsname{\color{black}}%
+      \expandafter\def\csname LTa\endcsname{\color{black}}%
+      \expandafter\def\csname LT0\endcsname{\color[rgb]{1,0,0}}%
+      \expandafter\def\csname LT1\endcsname{\color[rgb]{0,1,0}}%
+      \expandafter\def\csname LT2\endcsname{\color[rgb]{0,0,1}}%
+      \expandafter\def\csname LT3\endcsname{\color[rgb]{1,0,1}}%
+      \expandafter\def\csname LT4\endcsname{\color[rgb]{0,1,1}}%
+      \expandafter\def\csname LT5\endcsname{\color[rgb]{1,1,0}}%
+      \expandafter\def\csname LT6\endcsname{\color[rgb]{0,0,0}}%
+      \expandafter\def\csname LT7\endcsname{\color[rgb]{1,0.3,0}}%
+      \expandafter\def\csname LT8\endcsname{\color[rgb]{0.5,0.5,0.5}}%
+    \else
+      % gray
+      \def\colorrgb#1{\color{black}}%
+      \def\colorgray#1{\color[gray]{#1}}%
+      \expandafter\def\csname LTw\endcsname{\color{white}}%
+      \expandafter\def\csname LTb\endcsname{\color{black}}%
+      \expandafter\def\csname LTa\endcsname{\color{black}}%
+      \expandafter\def\csname LT0\endcsname{\color{black}}%
+      \expandafter\def\csname LT1\endcsname{\color{black}}%
+      \expandafter\def\csname LT2\endcsname{\color{black}}%
+      \expandafter\def\csname LT3\endcsname{\color{black}}%
+      \expandafter\def\csname LT4\endcsname{\color{black}}%
+      \expandafter\def\csname LT5\endcsname{\color{black}}%
+      \expandafter\def\csname LT6\endcsname{\color{black}}%
+      \expandafter\def\csname LT7\endcsname{\color{black}}%
+      \expandafter\def\csname LT8\endcsname{\color{black}}%
+    \fi
+  \fi
+  \setlength{\unitlength}{0.0500bp}%
+  \begin{picture}(7300.00,5520.00)%
+      \put(846,5700){\makebox(0,0)[r]{\strut{} \textbf{A}}}%
+
+      \put(1078,3845){\makebox(0,0)[r]{\strut{} 0}}%
+      \put(1078,4198){\makebox(0,0)[r]{\strut{} 0.25}}%
+      \put(1078,4551){\makebox(0,0)[r]{\strut{} 0.5}}%
+      \put(1078,4903){\makebox(0,0)[r]{\strut{} 0.75}}%
+      \put(1078,5256){\makebox(0,0)[r]{\strut{} 1}}%
+      \put(1210,3484){\makebox(0,0){\strut{} 0}}%
+      \put(1609,3484){\makebox(0,0){\strut{} 0.2}}%
+      \put(2007,3484){\makebox(0,0){\strut{} 0.4}}%
+      \put(2406,3484){\makebox(0,0){\strut{} 0.6}}%
+      \put(2804,3484){\makebox(0,0){\strut{} 0.8}}%
+      \put(3203,3484){\makebox(0,0){\strut{} 1}}%
+      \put(176,4480){\rotatebox{-270}{\makebox(0,0){\strut{}mutual information (bits)}}}%
+      \put(2206,3154){\makebox(0,0){\strut{}$\mu$}}%
+      \put(1342,5083){\makebox(0,0)[l]{\strut{}new}}%
+      \put(1342,4863){\makebox(0,0)[l]{\strut{}old 3 ms}}%
+      \put(1342,4643){\makebox(0,0)[l]{\strut{}old 2 ms}}%
+
+      \put(4546,5700){\makebox(0,0)[r]{\strut{} \textbf{B}}}%
+
+      \put(4646,3801){\makebox(0,0)[r]{\strut{} 0}}%
+      \put(4646,4286){\makebox(0,0)[r]{\strut{} 0.5}}%
+      \put(4646,4771){\makebox(0,0)[r]{\strut{} 1}}%
+      \put(4646,5256){\makebox(0,0)[r]{\strut{} 1.5}}%
+      \put(4778,3484){\makebox(0,0){\strut{} 0}}%
+      \put(5203,3484){\makebox(0,0){\strut{} 0.2}}%
+      \put(5628,3484){\makebox(0,0){\strut{} 0.4}}%
+      \put(6053,3484){\makebox(0,0){\strut{} 0.6}}%
+      \put(6478,3484){\makebox(0,0){\strut{} 0.8}}%
+      \put(6903,3484){\makebox(0,0){\strut{} 1}}%
+      \put(3876,4480){\rotatebox{-270}{\makebox(0,0){\strut{}mutual information (bits)}}}%
+      \put(5840,3154){\makebox(0,0){\strut{}$\mu$}}%
+      \put(4910,5083){\makebox(0,0)[l]{\strut{}new}}%
+      \put(4910,4863){\makebox(0,0)[l]{\strut{}old}}%
+
+
+
+      \put(846,2700){\makebox(0,0)[r]{\strut{} \textbf{C}}}%
+
+      \put(682,738){\makebox(0,0)[r]{\strut{} 0}}%
+      \put(682,1075){\makebox(0,0)[r]{\strut{} 1}}%
+      \put(682,1413){\makebox(0,0)[r]{\strut{} 2}}%
+      \put(682,1750){\makebox(0,0)[r]{\strut{} 3}}%
+      \put(682,2087){\makebox(0,0)[r]{\strut{} 4}}%
+      \put(814,484){\makebox(0,0){\strut{} 0}}%
+      \put(1292,484){\makebox(0,0){\strut{} 0.2}}%
+      \put(1770,484){\makebox(0,0){\strut{} 0.4}}%
+      \put(2247,484){\makebox(0,0){\strut{} 0.6}}%
+      \put(2725,484){\makebox(0,0){\strut{} 0.8}}%
+      \put(3203,484){\makebox(0,0){\strut{} 1}}%
+      \put(176,1480){\rotatebox{-270}{\makebox(0,0){\strut{}mutual information (bits)}}}%
+      \put(2008,154){\makebox(0,0){\strut{}$\mu$}}%
+
+      \put(946,2083){\makebox(0,0)[l]{\strut{}new}}%
+      \put(946,1863){\makebox(0,0)[l]{\strut{}old}}%
+
+      \put(4546,2700){\makebox(0,0)[r]{\strut{} \textbf{D}}}%
+
+      \put(4646,778){\makebox(0,0)[r]{\strut{} 0}}%
+      \put(4646,1147){\makebox(0,0)[r]{\strut{} 0.5}}%
+      \put(4646,1517){\makebox(0,0)[r]{\strut{} 1}}%
+      \put(4646,1886){\makebox(0,0)[r]{\strut{} 1.5}}%
+      \put(4646,2256){\makebox(0,0)[r]{\strut{} 2}}%
+      \put(4778,484){\makebox(0,0){\strut{} 0}}%
+      \put(5203,484){\makebox(0,0){\strut{} 0.2}}%
+      \put(5628,484){\makebox(0,0){\strut{} 0.4}}%
+      \put(6053,484){\makebox(0,0){\strut{} 0.6}}%
+      \put(6478,484){\makebox(0,0){\strut{} 0.8}}%
+      \put(6903,484){\makebox(0,0){\strut{} 1}}%
+      \put(3876,1480){\rotatebox{-270}{\makebox(0,0){\strut{}mutual information (bits)}}}%
+      \put(5840,154){\makebox(0,0){\strut{}$\mu$}}%
+      \put(4910,2083){\makebox(0,0)[l]{\strut{}new}}%
+      \put(4910,1863){\makebox(0,0)[l]{\strut{}old}}%
+
+
+    \put(0,3000){\includegraphics{fig_short_window}}
+    \put(3700,3000){\includegraphics{fig_long_window}}%
+    \put(3700,0){\includegraphics{fig_high_rate}}%
+    \put(0,0){\includegraphics{fig_new_noise}}%
+
+
+  \end{picture}%
+\endgroup

@@ -1,0 +1,229 @@
+\documentclass[12pt]{article}
+
+\begin{document}
+
+\section*{Point-by-Point rebuttal letter}
+
+\subsection*{Reviewer \#1}
+
+This is a short but very worthwhile manuscript, presenting a promising
+approach to estimation of mutual information between spike trains.
+The approach taken is sound, the exposition is clear, and the
+application to synthetic data is appropriate to demonstrate the
+advantages and practicality of the approach.
+
+My concerns are quite minor.  The only conceptual issue is that the
+author makes a major point of the fact that the new estimator only
+requires metrical structure in the space of spike trains, and not a
+vector-space structure.  However, he applies it using the van Rossum
+metric, which is equivalent to a vector-space embedding followed by a
+Euclidean (standard L2) metric.  So the full generality of the
+approach does not seem to be exploited or tested.
+
+\subsubsection*{response}
+\begin{quote}
+ I have clarified this by adding "useful co-ordinates" at several
+   points in the text. I have also added a graph, Fig. 6B where the
+   Victor-Purpura rather than the van Rossum metric is used; the
+   Victor-Purpura, the first spike train metric to be discovered,
+   rivals the van Rossum metric in measures of how well metric
+   distances capture information coding in spike trains. It is proveably
+   not a Euclidean metric. In Fig. 6B we see it gives a _very_ similar
+   estimate for the mutual information. In the text I have written:
+   "In Fig.~\ref{fig_metrics}\textbf{A} the van Rossum metric is replaced
+   by the Victor-Purpura metric \cite{VictorPurpura1996}. This was the
+   first metric proposed for spike trains and rivals the van Rossum
+   metric in measures of how well metric distances capture information
+   coding in spike trains \cite{HoughtonVictor2010}. Furthermore, it
+   is a non-Euclidean metric \cite{AronovVictor2014}; the van Rossum
+   metric works by embedding the space of spike trains into the
+   infinite-dimensional space of functions, in this sense the van
+   Rossum metric is Euclidean, replacing it with the Victor Purpura
+   metric demonstrates that this Euclidean property is not required
+   for the density estimation approach to work."
+\end{quote}
+
+Other points:
+
+\begin{itemize}
+\item At various points in the text and Figures (e.g., Fig 4), the author
+refers to his method and the standard method as "new" and "old" -
+perhaps a more descriptive term (e.g., "density estimation" and
+"binned". \textbf{response} I have change "new" to "density estimation" and "old" to "binned"
+   in the text; in the figure legends "density estimation" and
+   "binned" are too long, so I have left "new" and "old", but I take
+   care to expand this in the figure captions.
+\item Page 9, bottom: "This method" - is this a reference to the method for
+calculation of information, or the method for simulating data? \textbf{response} "This method" refers to the method for producing simulated data;
+   many thanks for pointing out this ambiguous phrasing; I have
+   changed to "This method for producing simulated data".
+\item The expository style is very informal; this may put some readers off,
+but I leave any changes in this regard to the author and the
+copy-editing process. \textbf{response} I apologise for the informal style and would value any improvements that might be suggested in a copy-editing process.
+
+\subsection*{Reviewer \#2}
+
+This paper refines a new method to calculate information between spike
+trains that is very data efficient.  Overall, I think it is a good
+study on an interesting topic, but I have a few suggestions.  The
+study is very concise, and I liked reading it, but it borders on
+minimalist. Presumably the author would want the readers to go and use
+his method, but the readers will need more detail, in particular if
+they want to implement the approach. A number of parameters is not
+explored, raising the suspicion that the method could be fragile.  The
+published Roy Soc paper does not help as it is rather short as well.
+
+Specific comments and suggestion:
+
+\begin{itemize}
+
+\item Can the Method also be used to calculate the information between
+  cont. stimulus and spiking response (as has been done by Panzeri et
+  al)? \textbf{response} Yes, the method should work for the mutual
+  information between any two metric spaces; the aim of this paper is
+  to explore a specific application of the original method, so this is
+  not developed here. I changed the last sentence of the conclusions
+  to read: "Obviously this is the case when the data of interest is
+  spike train data, but there are likely to be manifold other
+  applications to other data types, including other applications
+  involving neuroscience data, including calculating the mutual
+  information between spiking responses and a continuous stimulus
+  space, as previously considered in \cite{PanzeriEtAl1999}."
+
+\item p3: the binning interval of 45 ms. That seems very specific but it's
+dependency is not further explored. Does it change with firing rate?
+For the current firing rate there will be ~2 spikes per bin. Is that
+critical?  (Note, discussion of this parameter value can be postponed,
+in particular as no intuition about its required value is given).  \textbf{response} I have added two new figures, Figure 5A and 5B, plotting the
+   estimated information with interval lengths 30ms and 60ms to
+   demonstrate that the interval length is not critical. Figure 5D
+   plots the estimated information with a higher firing rate. There
+   was a mistake with the firing rate as previous stated; I gave the
+   number of spikes for both trains, not for each train, this has now
+   been corrected. In the results section there is a new paragraph
+   about robustness and I write "The robustness of the density
+   estimation approach to mutual information is examined in
+   Fig.5~\ref{fig_different_mu_sweeps}. In Fig.~5textbf{A} and Fig.5
+   the lengths of the short intervals used to calculate the mutual
+   information are changed; Fig.5\textbf{A} also plots the binned
+   estimate with a different letter length. In Fig.5\textbf{C} a
+   different stimulus is used, in all the simulations whereas for all
+   the other simulations the shared input is shared with $S_1=S$ and
+   $S_2=\bar{S}-S$, in this figure $S_i=S$ for both values of
+   $i$. Finally, in Fig.5\textbf{D} an input with a higher firing rate
+   is used. The density estimator performs well, but there is some
+   indication that the amount of data required, though modest compared
+   to the binned approach, does increase as the number of spikes
+   increases." I have also added to the discussion to note that the
+   estimate may perform worse for longer trains: "However, mutual
+   information estimated from a distance matrix must underestimate the
+   true value. In the example considered here, this underestimate
+   appears to be small; though there is some indication that the
+   underestimate increases as the number of spikes increases. This
+   might be a more significant aspect of real data where there may be
+   information-carry motifs in spike trains which are not present in
+   the simulated data and which are not captured by the spike train
+   metrics."
+
+\item p5. $h^2/N^2$ -> $h^2/n^2$ (?) \textbf{response} Thanks - fixed.
+
+\item Fig.1: I could not see how $h$ was 8 here.  \textbf{response} This was a silly mistake on my part; $h=7$ in the figure. This has
+   been corrected. Sorry!
+
+\item p7. Is it possible to simplify Eq 10 in the limit of large $n$?
+That would be of interest to see to functional dependence of I_0.
+\textbf{response} This can be done using the Stirling Formula which
+agrees with a more intuitive argument, that is, giving an urn
+description, since h the number of red balls is become small compared
+to n the total number of balls, the probability of finding the a red
+ball goes to zero. However, one red ball has already been selected, so
+the probability with r=1 goes to one. Thus, as n gets large I_0 goes
+like log n. I_{KL} will have the same behavour. I haven't added this
+to the text.
+
+\item *p8. It would be advisable to plot I(U;V) versus $h$.  Does the best
+value of $h$ depend on $n$ and $\tau$?  \textbf{response} A graph of I(U;V) versus $h$ has been added as Fig. 7A. A graph of
+   the best value of $h$ as a function of spike length has been added
+   as Fig. 7B.
+
+\item p9. A redefinition of $mu'=1-\mu$ would make sense as then it
+ measures amount of common input. \response Good idea; I have done this.
+
+\item p10 The 'old' method is not described adequately. There are many ways
+to estimate the information. Is this the Panzeri method with shuffle
+correction? References would be in order.  \textbf{response} I have modestly expanded the description and added references: "
+The bias is removed by also calculating the mutual information for
+shuffled data, in this case this means shuffling the pairing between
+the spike train intervals \cite{NirenbergEtAl2001,MontemurroEtAl2007,
+PanzeriEtAl2007,MagriEtAl2009}."
+
+\item A better name than 'old' would help.  \textbf{response} I have changed this to "binned" in the text; because "new" and
+   "old" are convenient in figure keys I have retained them in graphs,
+   but I have expanded them in the figure captions and in the text
+   itself I use "binned" instead of "old" and "density estimation"
+   instead of "new".
+
+\item Is dt=3 ms optimal? \textbf{response} It is; I have now included a dt=2 ms graph (Figure 5A) to show it
+   does not give a larger estimated mutual information, it does
+   however, require much more data. A larger dt will decrease the
+   estimated information but will require less data. I have noted this
+   in the results paragraph about robustness which is quoted above.
+   
+\item Presentation-wise one could use a logarithmic x-scale and then combine Fig 4A and Fig 4B.  \textbf{response} I have kept Fig 4A and 4B since they show the behaviour of the two
+   methods, but have added a new figure, 4C, with a log scale, as
+   suggested, allowing the two methods to appear on the same graph.
+
+\end{itemize}
+
+MAYBE
+
+\begin{itemize}
+
+\item p13 Eq.18: Such extrapolation approaches date back to Strong & Bialek and Panzeri.  \textbf{response} I have now added the relevant reference, thank you.
+
+\item It would be nice to verify that the method also works for a shared OU noise model.
+(note that the common noise model has been studied a lot by Moreno-Bote and co-workers).  \textbf{response} This is a good idea, and something I would like to do; however for
+   this paper I am worried that introducing another noise model will
+   be confusing. I have run the method with a different version of the
+   existing noise model; this is included as Figure 5C and described
+   in the figure caption.
+
+\item p13 Discussion of Fig4D. Why does small tau lead to problems? What
+  is the intuition? And why does large tau not lead to problems?  \textbf{response} I have added "In Fig.~\ref{fig_metrics}\textbf{B} small values of
+$\tau$ show a poor performance; for small values of $\tau$ the metric
+distance between two spike trains is very dependent on noise which
+jitters spike times in a way which is significant when compared to
+$\tau$; for values of $\tau$ that are similar or larger than the size
+of the interval, the relative distances between different pairs of
+spike train does not change as $\tau$ varies."
+
+\item It would be great if accompanying software would be published. \textbf{response} I plan to make all the software available, along with the data used to produce the graphs.
+
+\item Generally, given an arbitrary spike train data, how should the
+  parameters in the Method be set? I think this deserves an extended
+  Discussion.  \textbf{response} I have added: "It is hoped it will prove useful in estimating
+mutual information for real data. Obviously using the approach in
+practise will require a choice of the interval length and of spike
+train metric. Typically, as with the binned approach, the interval
+length should be chosen to reflect the timescale of interest for the
+cells being studied, this might, for example, reflect the membrane
+constants of the cells and the correllation length of their
+stimuli. If the van Rossum metric is used, the parameter $\tau$ needs
+to be set; ideally this value should maximize the estimated mutual
+information."
+\end{itemize}
+
+Minor
+
+\begin{itemize}
+Abstract: smooth-> smoothing
+
+\item p4. inteval -> interval  \textbf{response} done
+
+\item p11 signicant   \textbf{response} done
+
+\item p14 Caption of fig4 was broken off.  \textbf{response} sorry;
+this happened when I changed to double space for submission; for the
+resubmission the paper has 1.5 spacing to avoid this problem.
+\end{itemize}
+\end{document}
