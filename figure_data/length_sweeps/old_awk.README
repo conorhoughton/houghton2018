@@ -1,0 +1,1 @@
+awk -F [ '{print $2}' < old_all.dat | sed 's/]//g' | sed 's/,//g' | awk '{a=0;f=0;b=0;for(i=1;i<=NF;i++){a+=($i);b+=($i)*($i);f++;}print a/f" "sqrt(b/f-(a/f)*(a/f));}' > old_temp.dat
